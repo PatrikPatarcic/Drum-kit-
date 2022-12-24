@@ -7,12 +7,16 @@ for (let i = 0; i < buttonList.length; i++) {
         var buttonInnerHTML = this.innerHTML;
 
         playSounds(buttonInnerHTML);
+
+        buttonAnimation(buttonInnerHTML);
     });
 }
 
 document.addEventListener("keydown", function (event) {
 
     playSounds(event.key);
+
+    buttonAnimation(event.key);
 });
 
 function playSounds (key) {
@@ -55,4 +59,15 @@ function playSounds (key) {
         default:
             break;
     }
+}
+
+function buttonAnimation(currentKey) {
+
+    var activeButton = document.querySelector(`.${currentKey}`);
+
+    activeButton.classList.add('pressed');
+
+    setTimeout(function () { 
+        activeButton.classList.remove('pressed');
+    }, 100);
 }
